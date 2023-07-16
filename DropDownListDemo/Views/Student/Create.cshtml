@@ -1,0 +1,60 @@
+﻿@model DropDownListDemo.Models.StudentVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Student</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="student.RollNumber" class="control-label"></label>
+                <input asp-for="student.RollNumber" class="form-control" />
+                <span asp-validation-for="student.RollNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="student.Name" class="control-label"></label>
+                <input asp-for="student.Name" class="form-control" />
+                <span asp-validation-for="student.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="student.Gender" class="control-label"></label>
+               @* <input asp-for="student.Gender" class="form-control" />*@
+               <select asp-for="student.Gender" class="form-select">
+                   <option value="Male">Male</option>
+                   <option value="Female">Female</option>
+                   <option value="Other">Other</option>
+               </select>
+                <span asp-validation-for="student.Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="student.Age" class="control-label"></label>
+                <input asp-for="student.Age" class="form-control" />
+                <span asp-validation-for="student.Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="student.City" class="control-label"></label>
+               
+                <select asp-for="student.City" asp-items="@Model.cityList" class="form-select">
+                    <option selected disabled>--Select City--</option> 
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
